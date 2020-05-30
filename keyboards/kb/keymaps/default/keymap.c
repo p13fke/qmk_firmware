@@ -3,19 +3,19 @@
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 	KEYMAP(
-		KC_DEL, M(0), M(1), M(2), 
-		KC_NO, KC_SLSH, KC_ASTR, KC_MINS, 
-		KC_7, KC_8, KC_9, KC_PLUS, 
-		KC_4, KC_5, KC_6, 
-		KC_1, KC_2, KC_3, KC_ENT, 
-		KC_0, KC_NO, KC_COMM),
+		MO(1), M(0), M(1), M(2), 
+		KC_DEL, KC_PSLS, KC_PAST, KC_PMNS, 
+		KC_P7, KC_P8, KC_P9, KC_PPLS, 
+		KC_P4, KC_P5, KC_P6, 
+		KC_P1, KC_P2, KC_P3, KC_PENT, 
+		KC_P0, M(3), KC_PDOT),
 
 	KEYMAP(
 		KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, 
 		KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, 
 		KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, 
-		KC_TRNS, KC_TRNS, KC_TRNS, 
-		KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, 
+		KC_TRNS, KC_UP, KC_TRNS, 
+		KC_LEFT, KC_DOWN, KC_RGHT, RESET, 
 		KC_TRNS, KC_TRNS, KC_TRNS),
 
 	KEYMAP(
@@ -132,7 +132,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 };
 
-const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt) {
+const macro_t (keyrecord_t *record, uint8_t id, uint8_t opt) {
 	keyevent_t event = record->event;
 
 	switch (id) {
@@ -149,6 +149,11 @@ const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt) {
 		case 2:
 			if (record->event.pressed) {
 				return MACRO( D(LALT), D(LSFT), T(4), U(LSFT), U(LALT), END );
+			}
+			break;
+		case 3:
+			if (record->event.pressed) {
+				return MACRO( T(0), T(0), END );
 			}
 			break;
 	}
